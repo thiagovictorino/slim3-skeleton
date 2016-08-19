@@ -15,6 +15,7 @@ class HomeController extends BaseController
 
     public function index(Request $request, Response $response){
 
+        $this->logger->addInfo("Something interesting happened");
         $response->getBody()->write("Hello");
         return $response;
     }
