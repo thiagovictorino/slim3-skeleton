@@ -1,0 +1,13 @@
+{
+    "name": "thiagovictorino/slim3-skeleton",
+    "description": "My own skeleton for slim3 projects",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Thiago Victorino",
+            "email": "thiagovictorino@gmail.com"
+        }
+    ],
+    "require": {}
+}
