@@ -5,15 +5,8 @@ require APP_PATH . '/vendor/autoload.php';
 
 $dotenv = new Dotenv\Dotenv(APP_PATH);
 $dotenv->load();
-$dotenv->required('LOG_LEVEL')->allowedValues(['DEBUG',
-  'INFO',
-  'NOTICE',
-  'WARNING',
-  'ERROR',
-  'CRITICAL',
-  'ALERT',
-  'EMERGENCY',
-]);
+$dotenv->required('LOG_LEVEL')->allowedValues(['DEBUG', 'INFO', 'NOTICE', 'WARNING', 'ERROR', 'CRITICAL', 'ALERT', 'EMERGENCY']);
+$dotenv->required('LOG_ROTATE')->allowedValues([true,false]);
 
 
 

@@ -2,6 +2,6 @@
 
 
 return [
-    'displayErrorDetails' => $_ENV["DEBUG_MODE"],
+    'displayErrorDetails' => ($_ENV["DEBUG_MODE"]=="true"),
     'addContentLengthHeader' => false,
 ];

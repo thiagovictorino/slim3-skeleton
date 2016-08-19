@@ -5,6 +5,9 @@ use Monolog\Logger;
 
 $container = $app->getContainer();
 
+/**
+ * Logger configurations
+ */
 $container['logger'] = function($c) {
     $logger = new Logger('log');
 
@@ -39,7 +42,33 @@ $container['logger'] = function($c) {
 
     }
 
-    $file_handler = new \Monolog\Handler\StreamHandler(APP_PATH."/storage/logs/app.log", $level);
+    $rotate = null;
+
+
+    if($_ENV["LOG_ROTATE"] == "true"){
+        $rotate = "-".date($_ENV['LOG_ROTATE_FORMAT']);
+    }
+
+    $file_handler = new \Monolog\Handler\StreamHandler(APP_PATH."/storage/logs/app".$rotate.".log", $level);
     $logger->pushHandler($file_handler);
     return $logger;
+};
+
+/**
+ * View configs
+ */
+
+// Register component on container
+$container['view'] = function ($container) {
+
+    $view = new \Slim\Views\Twig(APP_PATH.'/app/views/', [
+        'cache' => APP_PATH.'/storage/cache/'
+    ]);
+
+    $view->addExtension(new \Slim\Views\TwigExtension(
+        $container['router'],
+        $container['request']->getUri()
+    ));
+
+    return $view;
 };

@@ -9,15 +9,23 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Slim\Container;
 
 class HomeController extends BaseController
 {
 
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+
+        $this->logger->setPrefix(self::class);
+
+    }
+
     public function index(Request $request, Response $response){
 
-        $this->logger->addInfo("Something interesting happened");
-        $response->getBody()->write("Hello");
-        return $response;
+        $this->logger->alert("Testanu");
+        return $this->view->render($response, 'home.phtml');
     }
 
 }
